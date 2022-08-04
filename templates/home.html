@@ -1,0 +1,45 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+  {%if session.logged_in %}
+    <h3>Welcome to this amazing File Sharing Tool</h3>
+    {% from "includes/_formhelpers.html" import render_field %}
+    <div class="card">
+      <div class="card-body">
+        <form enctype="multipart/form-data" action="" method="POST">
+          <div class="input-group">
+            {{render_field(form.shared_file, class_='form-control')}}
+          </div>
+       
+          <div class="mt-4">
+            <p>Add a List of addresses to share file with separeated by commas</p>
+            <div class="form-group">
+              {{ render_field(form.shared_with, class_='form-control') }}
+            </div>
+            <div class="row justify-content-center mt-5">
+              <div class="col-sm-6"><button type="submit" value="submit" class="btn-success btn-block  btn-sm">Submit Form</button></div>
+            </div>
+          </div>
+      </form>
+      </div>
+    </div>
+    
+    <div class="card mt-4">
+      <div class="card-body">
+        <h5 class="text-secondary" target="_blank">Uploaded Files</h5>
+      <a href=" {{link.link}}"> {{link.link}}</a>
+      <br>
+      <h4>Users</h4>
+      {% for user in link.users %}
+      User:  {{user.name}} <br>
+      ID:  {{user.email_id}} <br>
+      Clicked:  {{user.clicked}}
+      <hr>
+      {% endfor %}
+      </div>
+    </div>
+  {% else %}
+    <h3>Please <a href="/login">login</a> in to  continue</h3>
+  {% endif %}
+{% endblock %}
+
