@@ -1,5 +1,4 @@
 from flask import Flask, render_template, url_for, flash, redirect, session, logging, request
-from data import Link
 from flask_mysqldb import MySQL
 from wtforms import Form, StringField, PasswordField, validators
 from flask_wtf.file import FileField, FileAllowed, FileRequired
@@ -35,12 +34,6 @@ ses = boto3.client(
     aws_secret_access_key=app.config['S3_SECRET'],
     region_name=app.config['S3_LOCATION']
 )
-
-
-# mail = Mail(app)
-
-
-Link = Link()
 
 # Check if user is logged in
 
